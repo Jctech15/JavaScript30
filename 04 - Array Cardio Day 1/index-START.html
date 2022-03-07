@@ -88,7 +88,9 @@
       const ageGap = inventors.sort(
         (personA, personB) => personA.year - personB.year
       );
-      // console.log(ageGap);
+      console.log(ageGap);
+      const ordered = inventors.sort((a, b) => (a.year > b.year ? 1 : -1));
+      console.table(ordered);
       // Array.prototype.reduce()
       // 4. How many years did all the inventors live all together?
       const totalAge = inventors.reduce((previous, current) => {
@@ -97,18 +99,25 @@
       }, 0);
       // console.log(totalAge);
       // 5. Sort the inventors by years lived
+
       const olderInventor = inventors.sort((personA, personB) => {
         const ageA = personA.passed - personA.year;
         const ageB = personB.passed - personB.year;
         return ageB - ageA;
       });
-      console.log(olderInventor);
+      // console.log(olderInventor);
+
       // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
       // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
 
       // 7. sort Exercise
       // Sort the people alphabetically by last name
-
+      const alphabeticName = people.sort((personA, personB) => {
+        const [lastA, firstA] = personA.split(", ");
+        const [lastB, firstB] = personB.split(", ");
+        return lastA > lastB ? 1 : -1;
+      });
+      console.log(alphabeticName);
       // 8. Reduce Exercise
       // Sum up the instances of each of these
       const data = [
@@ -127,6 +136,15 @@
         "car",
         "truck",
       ];
+
+      const transportation = data.reduce((obj, item) => {
+        if (!obj[item]) {
+          obj[item] = 0;
+        }
+        obj[item]++;
+        return obj;
+      }, {});
+      console.log(transportation);
     </script>
   </body>
 </html>
